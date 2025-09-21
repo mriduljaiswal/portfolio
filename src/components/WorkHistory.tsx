@@ -10,54 +10,59 @@ const WorkHistory = () => {
       id: 1,
       type: "education",
       title: "UPES",
-      subtitle: "Bachelors of Technology",
-      description: "Computer Science with specialization in Cloud Computing",
+      subtitle: "BACHELORS OF TECHNOLOGY",
+      description: "Computer Science",
+      dateRange: "2018 - 2022",
       icon: <GraduationCap className="h-6 w-6 text-purple-400" />,
-      logo: "https://upload.wikimedia.org/wikipedia/en/thumb/9/9a/UPES_Dehradun_Logo.png/220px-UPES_Dehradun_Logo.png"
+      logo: "/img/UPES.png"
     },
     {
       id: 2,
       type: "internship",
       title: "To The New",
-      subtitle: "DevOps Internship", 
-      description: "Worked with CloudKeeper team",
+      subtitle: "INTERNSHIP", 
+      description: "Backend / DevOps",
+      dateRange: "06/2021 - 08/2021",
       icon: <Briefcase className="h-6 w-6 text-blue-400" />,
-      logo: "https://media.licdn.com/dms/image/v2/C4D0BAQGQe4v9zXCnEw/company-logo_200_200/company-logo_200_200/0/1630639067138/tothenew_logo?e=2147483647&v=beta&t=VkQhkTJwPXdcUJgBCKA4U6vXfPzKj8xHKCXjhtSkwIo"
+      logo: "/img/To The New.png"
     },
     {
       id: 3,
       type: "job",
       title: "Samsung",
-      subtitle: "Android Developer",
-      description: "Android / Core Android (Frameworks)",
+      subtitle: "SOFTWARE ENGINEER",
+      description: "Core OS / Android Frameworks",
+      dateRange: "06/2022 - 04/2025",
       icon: <Building className="h-6 w-6 text-green-400" />,
-      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/android/android-original.svg"
+      logo: "/img/Samsung.png"
     },
     {
       id: 4,
       type: "job", 
       title: "Microsoft",
-      subtitle: "AMC Team",
-      description: "account.microsoft.com - one of the core product teams",
+      subtitle: "SOFTWARE ENGINEER",
+      description: "FullStack",
+      dateRange: "05/2025 - current",
       icon: <Users className="h-6 w-6 text-orange-400" />,
-      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/azure/azure-original.svg"
+      logo: "/img/Microsoft.png"
     }
   ];
 
   return (
-    <section id="work-history" className="section-full bg-dark-bg py-20">
+    <section id="work-history" className="section-full bg-dark-bg py-16 mt-16">
       <div className="w-full px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-32">
           <h2 className="text-4xl md:text-5xl font-black mb-6">
             <GradientText
-              colors={["#a162dc", "#3c0596", "#a162dc", "#3c0596", "#a162dc"]}
-              animationSpeed={9}
+              colors={["#964ddbff", "#560ad1ff", "#964ddbff", "#560ad1ff", "#964ddbff"]}
+              animationSpeed={13}
               showBorder={false}
+              fontWeight={650}
             >
               Experience
             </GradientText>
           </h2>
-          <p className="text-sm text-gray-500 max-w-3xl mx-auto uppercase font-bold tracking-wide">
+          <p className="text-sm text-gray-400 max-w-3xl mx-auto uppercase font-bold tracking-wide">
             MY JOURNEY FROM EDUCATION TO PROFESSIONAL EXPERIENCE
           </p>
         </div>
@@ -83,14 +88,14 @@ const WorkHistory = () => {
               >
                 {/* Experience Card positioned completely left or right */}
                 {index % 2 === 0 ? (
-                  <div className="flex justify-end pr-11" style={{width: 'calc(50% - 1.5rem)'}}>
-                    <div style={{width: '64%'}}>
+                  <div className="flex justify-end pr-8 w-1/2">
+                    <div className="w-full max-w-md">
                       <ExperienceCard experience={experience} />
                     </div>
                   </div>
                 ) : (
-                  <div className="flex justify-start pl-11 ml-auto" style={{width: 'calc(50% - 1.5rem)'}}>
-                    <div style={{width: '64%'}}>
+                  <div className="flex justify-start pl-8 w-1/2 ml-auto">
+                    <div className="w-full max-w-md">
                       <ExperienceCard experience={experience} />
                     </div>
                   </div>
@@ -114,6 +119,7 @@ interface ExperienceCardProps {
     title: string;
     subtitle: string;
     description: string;
+    dateRange: string;
     icon: React.ReactNode;
     logo?: string;
   };
@@ -130,27 +136,34 @@ const ExperienceCard = ({ experience }: ExperienceCardProps) => {
           proximity={64}
           inactiveZone={0.01}
         />
-        <div className="relative flex h-full flex-col justify-between gap-4 overflow-hidden rounded-xl p-4 md:p-5 bg-dark-surface/60 backdrop-blur-sm border border-dark-border/30">
-          <div className="relative flex flex-1 flex-col justify-between gap-2">
-            <div className="space-y-2">
-              <div className="flex items-center gap-3">
-                {experience.logo && (
-                  <img 
-                    src={experience.logo} 
-                    alt={experience.title}
-                    className="w-8 h-8 rounded-md object-contain bg-white/10 p-1"
-                  />
-                )}
-                <h3 className="font-sans text-lg font-semibold text-balance text-dark-text md:text-xl">
-                  {experience.title}
-                </h3>
-              </div>
-              <h4 className="font-sans text-base font-medium text-purple-400 md:text-lg">
+        <div className="relative flex h-full flex-col justify-between gap-4 overflow-hidden rounded-xl p-4 md:p-5 backdrop-blur-sm" style={{backgroundColor: '#060606'}}>
+          <div className="relative flex flex-1 gap-6">
+            {/* Logo column - left side */}
+            <div className="flex-1 flex items-center justify-center">
+              {experience.logo && (
+                <img 
+                  src={experience.logo} 
+                  alt={experience.title}
+                  className={`rounded-lg object-contain ${
+                    experience.title === "To The New" 
+                      ? "w-24 h-24 md:w-28 md:h-28" 
+                      : "w-28 h-28 md:w-32 md:h-32"
+                  }`}
+                />
+              )}
+            </div>
+            
+            {/* Content column - right side */}
+            <div className="flex-1 flex flex-col justify-center space-y-3">
+              <h4 className="font-sans text-sm font-bold text-purple-400 md:text-base">
                 {experience.subtitle}
               </h4>
               <p className="font-sans text-xs text-dark-text-secondary md:text-sm leading-relaxed">
                 {experience.description}
               </p>
+              <div className="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-md text-sm font-medium w-fit">
+                {experience.dateRange}
+              </div>
             </div>
           </div>
         </div>

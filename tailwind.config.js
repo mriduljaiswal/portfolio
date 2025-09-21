@@ -9,7 +9,7 @@ export default {
   	extend: {
   		fontFamily: {
   			sans: [
-  				'Figtree',
+  				'Inter',
   				'ui-sans-serif',
   				'system-ui',
   				'-apple-system',
@@ -40,9 +40,9 @@ export default {
   			},
   			dark: {
   				bg: '#000000',
-  				surface: '#1a1a1a',
-  				text: '#f8f9fa',
-  				'text-secondary': '#e9ecef',
+  				surface: '#dc2626',
+  				text: '#FAFAFA',
+  				'text-secondary': '#FAFAFA',
   				border: '#333333'
   			},
   			background: 'hsl(var(--background))',

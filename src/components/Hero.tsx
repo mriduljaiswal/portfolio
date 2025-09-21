@@ -1,5 +1,4 @@
 import DarkVeil from './DarkVeil';
-import GradientText from './ui/GradientText';
 
 const Hero = () => {
   return (
@@ -20,18 +19,11 @@ const Hero = () => {
       {/* Content Overlay */}
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-dark-text mb-6">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-semibold text-dark-text mb-6">
             Hi, I'm{' '}
-            <GradientText
-              colors={["#0c0c0c", "#a162dc", "#0c0c0c", "#a162dc", "#0c0c0c"]}
-              animationSpeed={9}
-              showBorder={false}
-            >
-              Swastik!
-            </GradientText>
-            
+            <span className="text-dark-text">Swastik!</span>
           </h1>
-          <p className="text-sm md:text-base lg:text-lg text-dark-text-secondary max-w-2xl mx-auto leading-relaxed font-light">
+          <p className="text-sm md:text-base lg:text-lg text-dark-text-secondary max-w-2xl mx-auto leading-relaxed">
             Good to see you here! Welcome to my web portfolio
           </p>
         </div>

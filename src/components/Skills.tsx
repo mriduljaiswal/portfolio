@@ -11,7 +11,7 @@ const Skills = () => {
         { name: 'Tailwind CSS', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg' },
         { name: 'HTML5', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg' },
         { name: 'CSS3', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg' },
-        { name: 'Fluent UI', logo: 'https://docs.microsoft.com/en-us/fluentui/images/fluent-ui-logo.svg' },
+        { name: 'Fluent UI', logo: 'https://upload.wikimedia.org/wikipedia/commons/2/2e/Fluent_React_UI_icon.svg' },
       ]
     },
     {
@@ -40,14 +40,15 @@ const Skills = () => {
   ]
 
   return (
-    <section id="skills" className="section-full bg-dark-bg py-20">
+    <section id="skills" className="section-full bg-dark-bg py-16 mt-16">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-5xl font-black mb-6">
+          <h2 className="text-4xl md:text-5xl font-black mb-6 leading-tight overflow-visible">
             <GradientText
-              colors={["#a162dc", "#3c0596", "#a162dc", "#3c0596", "#a162dc"]}
-              animationSpeed={9}
+              colors={["#964ddbff", "#560ad1ff", "#964ddbff", "#560ad1ff", "#964ddbff"]}
+              animationSpeed={13}
               showBorder={false}
+              fontWeight={650}
             >
               Technologies
             </GradientText>
@@ -85,10 +86,10 @@ const SkillCard = ({ category }: SkillCardProps) => {
           proximity={64}
           inactiveZone={0.01}
         />
-        <div className="relative flex h-full flex-col justify-between gap-6 overflow-hidden rounded-xl p-6 md:p-6 bg-dark-surface/60 backdrop-blur-sm border border-dark-border/30">
+        <div className="relative flex h-full flex-col justify-between gap-6 overflow-hidden rounded-xl p-6 md:p-6 backdrop-blur-sm" style={{backgroundColor: '#060606'}}>
           <div className="relative flex flex-1 flex-col gap-6">
             <div className="space-y-4">
-              <h3 className="font-sans text-xl font-semibold text-balance text-dark-text md:text-2xl text-center">
+              <h3 className="font-sans text-xl font-black text-balance text-dark-text md:text-2xl text-center">
                 {category.title}
               </h3>
               <div className="grid grid-cols-3 gap-4 justify-items-center">

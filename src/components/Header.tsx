@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import GradientText from './ui/GradientText'
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -8,7 +9,6 @@ const Header = () => {
     { name: 'About', href: '#about' },
     { name: 'Tech', href: '#skills' },
     { name: 'Experience', href: '#work-history' },
-    { name: 'Music', href: '#music' },
     { name: 'Contact', href: '#contact' },
   ]
 
@@ -33,33 +33,49 @@ const Header = () => {
 
   return (
     <header className="fixed top-0 left-0 right-0 bg-dark-bg/70 backdrop-blur-sm border-b border-dark-border z-50">
-      <nav className="w-full px-8 sm:px-12 lg:px-16">
+      <nav className="w-full px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
+          {/* Logo - pushed more to the left */}
           <div className="flex-shrink-0">
             <a href="#hero" className="text-xl font-bold text-dark-text hover:text-secondary-400 transition-colors duration-200">
-              Swastik
+              Swastik Mishra
             </a>
           </div>
 
-          {/* Desktop navigation - Right aligned with reduced spacing */}
+          {/* Desktop navigation - pushed more to the right with reduced spacing */}
           <div className="hidden md:block">
-            <div className="flex items-center space-x-5">
+            <div className="flex items-center space-x-4">
               {navItems.map((item) => {
                 const isActive = activeSection === item.href.substring(1)
                 return (
                   <a
                     key={item.name}
                     href={item.href}
-                    className={`px-3 py-2 text-sm font-medium transition-all duration-300 ${
+                    className={`group px-3 py-2 text-sm font-medium transition-all duration-300 hover:scale-105 ${
                       isActive 
                         ? 'text-white' 
-                        : 'text-dark-text-secondary hover:text-purple-600'
+                        : 'text-gray-400'
                     }`}
                     style={isActive ? {
-                      textShadow: '0 0 10px rgba(255, 255, 255, 0.3)',
+                      textShadow: '0 0 15px rgba(255, 255, 255, 0.8), 0 0 25px rgba(255, 255, 255, 0.4)',
                     } : {}}
                   >
-                    {item.name}
+                    {isActive ? (
+                      item.name
+                    ) : (
+                      <span className="group-hover:hidden">{item.name}</span>
+                    )}
+                    {!isActive && (
+                      <span className="hidden group-hover:inline-block">
+                        <GradientText
+                          colors={["#964ddbff", "#560ad1ff", "#964ddbff", "#560ad1ff", "#964ddbff"]}
+                          animationSpeed={13}
+                          showBorder={false}
+                        >
+                          {item.name}
+                        </GradientText>
+                      </span>
+                    )}
                   </a>
                 )
               })}

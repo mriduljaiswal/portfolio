@@ -13,6 +13,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.23.16",
+    "gsap": "^3.13.0",
     "lucide-react": "^0.544.0",
     "mathjs": "^14.7.0",
     "ogl": "^1.0.11",

@@ -3,9 +3,7 @@ import Hero from './components/Hero'
 import About from './components/About'
 import WorkHistory from './components/WorkHistory'
 import Skills from './components/Skills'
-import Music from './components/Music'
 import Contact from './components/Contact'
-import Footer from './components/Footer'
 
 function App() {
   return (
@@ -16,10 +14,13 @@ function App() {
         <About />
         <Skills />
         <WorkHistory />
-        <Music />
         <Contact />
       </main>
-      <Footer />
+      
+      {/* Footer text */}
+      <div className="text-center py-8 text-sm text-gray-500">
+        Designed and Built in React
+      </div>
     </div>
   )
 }
