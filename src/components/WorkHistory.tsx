@@ -15,8 +15,8 @@ const WorkHistory = () => {
       description: "Computer Science",
       dateRange: "2018 - 2022",
       icon: <GraduationCap className="h-6 w-6 text-purple-400" />,
-      logoPath: "/img/UPES Logo.png",
-      textPath: "/img/UPES Text.png",
+      logoPath: "./img/UPES Logo.png",
+      textPath: "./img/UPES Text.png",
       hasLogo: true,
       hasText: true
     },
@@ -28,8 +28,8 @@ const WorkHistory = () => {
       description: "Backend / DevOps",
       dateRange: "06/2021 - 08/2021",
       icon: <Briefcase className="h-6 w-6 text-blue-400" />,
-      logoPath: "/img/To The New Logo.png",
-      textPath: "/img/To The New Text.png",
+      logoPath: "./img/To The New Logo.png",
+      textPath: "./img/To The New Text.png",
       hasLogo: true,
       hasText: true
     },
@@ -41,7 +41,7 @@ const WorkHistory = () => {
       description: "Core OS / Android Frameworks",
       dateRange: "06/2022 - 04/2025",
       icon: <Building className="h-6 w-6 text-green-400" />,
-      textPath: "/img/Samsung.png",
+      textPath: "./img/Samsung.png",
       hasLogo: false,
       hasText: true
     },
@@ -53,8 +53,8 @@ const WorkHistory = () => {
       description: "FullStack",
       dateRange: "05/2025 - current",
       icon: <Users className="h-6 w-6 text-orange-400" />,
-      logoPath: "/img/Microsoft Logo.png",
-      textPath: "/img/Microsoft Text.png",
+      logoPath: "./img/Microsoft Logo.png",
+      textPath: "./img/Microsoft Text.png",
       hasLogo: true,
       hasText: true
     }
