@@ -2,44 +2,31 @@ import GradientText from './ui/GradientText'
 
 const About = () => {
   return (
-    <section id="about" className="section-full bg-dark-bg py-16">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-black mb-6">
-            <GradientText
-              colors={["#964ddbff", "#560ad1ff", "#964ddbff", "#560ad1ff", "#964ddbff"]}
-              animationSpeed={13}
-              showBorder={false}
-              fontWeight={650}
-            >
-              About Me
-            </GradientText>
-          </h2>
-          <p className="text-sm text-gray-500 max-w-3xl mx-auto uppercase font-bold tracking-wide">
-            MY BACKGROUND, EXPERIENCE, AND WHAT DRIVES MY PASSION FOR DEVELOPMENT
+    <section id="about" className="h-screen bg-dark-bg light:bg-white transition-colors duration-300 relative" style={{scrollMarginTop: '4rem'}}>
+      <div className="absolute flex items-start justify-center px-4 sm:px-6 lg:px-8" style={{top: '40%', left: '0', right: '0', transform: 'translateY(-50%)'}}>
+        <div className="max-w-6xl w-full text-center">
+        <h2 className="text-4xl md:text-5xl font-black mb-12">
+          <GradientText
+            animationSpeed={13}
+            showBorder={false}
+            fontWeight={700}
+          >
+            About Me
+          </GradientText>
+        </h2>
+
+        <div className="max-w-4xl mx-auto space-y-6">
+          <p className="text-dark-text-secondary light:text-gray-600 text-lg leading-relaxed transition-colors duration-300">
+            Hey, I'm Swastik, a software engineer who enjoys building systems that perform. At Microsoft, I work on AMC Portal used by millions! Before that I spent time at Samsung making Android devices faster and more reliable. I care about simplicity, performance, and writing code that lasts.
+          </p>
+          <p className="text-dark-text-secondary light:text-gray-600 text-lg leading-relaxed transition-colors duration-300">
+            Along the way, I've filed patents in listener-aware audio encoding and VR locomotion controls, contributing to enhancing user experience to give people more.
+          </p>
+          <p className="text-dark-text-secondary light:text-gray-600 text-lg leading-relaxed transition-colors duration-300">
+            Away from code, I'm big on exploring sound, stories, and spaces - from music and films to new places.ct us all.
+            These experiences keep me curious and bring me fresh perspective back into my work.
           </p>
         </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <div className="w-80 h-80 bg-black border border-dark-border rounded-2xl mx-auto mb-8 flex items-center justify-center">
-              <span className="text-dark-text-secondary text-lg">Your Photo Here</span>
-            </div>
-          </div>
-
-          <div className="space-y-6">
-            <h3 className="text-3xl font-bold text-dark-text mb-6">
-              Hello! I'm Swastik
-            </h3>
-            <p className="text-dark-text-secondary text-base leading-relaxed">
-              I'm a Software Engineer who loves solving real-world problems with clean, efficient code. I enjoy working with passionate teams and building systems that make a difference.
-            </p>
-            <p className="text-dark-text-secondary text-base leading-relaxed">
-              When I'm not coding, you can find me exploring new technologies, 
-              contributing to open source projects, or enjoying outdoor activities. 
-              I believe in continuous learning and staying up-to-date with industry trends.
-            </p>
-          </div>
         </div>
       </div>
     </section>

@@ -61,7 +61,7 @@ const Music = () => {
   };
 
   return (
-    <section id="music" className="section-full bg-dark-bg py-32 mt-32">
+    <section id="music" className="section-full bg-dark-bg py-12 mt-8 scroll-mt-20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-32">
           <h2 className="text-4xl md:text-5xl font-black mb-6">
@@ -69,7 +69,7 @@ const Music = () => {
               colors={["#964ddbff", "#560ad1ff", "#964ddbff", "#560ad1ff", "#964ddbff"]}
               animationSpeed={13}
               showBorder={false}
-              fontWeight={650}
+              fontWeight={700}
             >
               Personal Interests
             </GradientText>

@@ -37,6 +37,7 @@
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
+    --logo-filter: none;
   }
   .dark {
     --background: 222.2 84% 4.9%;
@@ -93,4 +94,16 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Light mode logo filter to make text portions black while preserving logo colors */
+.light {
+  --logo-filter: brightness(0.1) contrast(3) saturate(0.5);
+  --upes-logo-filter: none;
+}
+
+/* Dark mode - All logos should be white */
+.dark {
+  --logo-filter: brightness(0) invert(1);
+  --upes-logo-filter: invert(1) brightness(2) contrast(1.5);
 }

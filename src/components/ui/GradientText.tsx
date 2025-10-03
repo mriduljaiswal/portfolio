@@ -1,4 +1,5 @@
 import './GradientText.css';
+import { useTheme } from '../../contexts/ThemeContext';
 
 interface GradientTextProps {
   children: React.ReactNode;
@@ -12,13 +13,21 @@ interface GradientTextProps {
 export default function GradientText({
   children,
   className = '',
-  colors = ['#40ffaa', '#4079ff', '#40ffaa', '#4079ff', '#40ffaa'],
+  colors,
   animationSpeed = 8,
   showBorder = false,
   fontWeight = 'inherit'
 }: GradientTextProps) {
+  const { theme } = useTheme();
+  
+  // Theme-aware color schemes
+  const finalColors = colors || (theme === 'dark' 
+    ? ['#964ddbff', '#560ad1ff', '#964ddbff', '#560ad1ff', '#964ddbff'] // Purple for dark mode
+    : ['#f97316ff', '#ea580cff', '#f97316ff', '#ea580cff', '#f97316ff']  // Orange for light mode
+  );
+
   const gradientStyle = {
-    backgroundImage: `linear-gradient(to right, ${colors.join(', ')})`,
+    backgroundImage: `linear-gradient(to right, ${finalColors.join(', ')})`,
     animationDuration: `${animationSpeed}s`,
     fontWeight: fontWeight
   };

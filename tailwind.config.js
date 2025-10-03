@@ -38,12 +38,25 @@ export default {
   				DEFAULT: 'hsl(var(--secondary))',
   				foreground: 'hsl(var(--secondary-foreground))'
   			},
+  			orange: {
+  				'300': '#fdba74',
+  				'400': '#fb923c',
+  				'500': '#f97316',
+  				'600': '#ea580c'
+  			},
   			dark: {
   				bg: '#000000',
-  				surface: '#dc2626',
-  				text: '#FAFAFA',
-  				'text-secondary': '#FAFAFA',
+  				surface: '#121212ff',
+  				text: '#E8E8E8',
+  				'text-secondary': '#D1D1D1',
   				border: '#333333'
+  			},
+			light: {
+  				bg: '#ffffff',
+  				surface: '#f8f9faff',
+  				text: '#000000',
+  				'text-secondary': '#374151',
+  				border: '#e5e7eb'
   			},
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
@@ -85,5 +98,10 @@ export default {
   		}
   	}
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    function({ addVariant }) {
+      addVariant('light', '.light &')
+    }
+  ],
 }

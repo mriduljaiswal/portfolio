@@ -70,7 +70,9 @@ void main(){
     float scanline_val=sin(gl_FragCoord.y*uScanFreq)*0.5+0.5;
     col.rgb*=1.-(scanline_val*scanline_val)*uScan;
     col.rgb+=(rand(gl_FragCoord.xy+uTime)-0.5)*uNoise;
-    gl_FragColor=vec4(clamp(col.rgb,0.0,1.0),1.0);
+    
+    // Always output the same - let CSS handle light mode
+    gl_FragColor = vec4(clamp(col.rgb, 0.0, 1.0), 1.0);
 }
 `;
 
@@ -82,6 +84,7 @@ interface DarkVeilProps {
   scanlineFrequency?: number;
   warpAmount?: number;
   resolutionScale?: number;
+  backgroundMode?: 'dark' | 'light';
 }
 
 export default function DarkVeil({
@@ -91,7 +94,8 @@ export default function DarkVeil({
   speed = 0.5,
   scanlineFrequency = 0,
   warpAmount = 0,
-  resolutionScale = 1
+  resolutionScale = 1,
+  backgroundMode = 'dark'
 }: DarkVeilProps) {
   const ref = useRef<HTMLCanvasElement>(null);
   
@@ -158,5 +162,5 @@ export default function DarkVeil({
     };
   }, [hueShift, noiseIntensity, scanlineIntensity, speed, scanlineFrequency, warpAmount, resolutionScale]);
 
-  return <canvas ref={ref} className="darkveil-canvas" />;
+  return <canvas ref={ref} className={`darkveil-canvas ${backgroundMode === 'light' ? 'darkveil-light-mode' : ''}`} />;
 }

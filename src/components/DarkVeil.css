@@ -7,3 +7,8 @@
   left: 0;
   z-index: 0;
 }
+
+/* Light mode: invert to make black background white */
+.darkveil-light-mode {
+  filter: invert(1) hue-rotate(280deg) brightness(0.66) contrast(3.3) saturate(2.2);
+}
