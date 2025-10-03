@@ -3,7 +3,6 @@
 import { GraduationCap, Briefcase, Building, Users } from "lucide-react";
 import { GlowingEffect } from "./ui/glowing-effect";
 import GradientText from './ui/GradientText';
-import { useTheme } from '../contexts/ThemeContext';
 
 const WorkHistory = () => {
   const experiences = [
@@ -61,20 +60,20 @@ const WorkHistory = () => {
   ];
 
   return (
-    <section id="work-history" className="min-h-screen bg-dark-bg light:bg-white transition-colors duration-300 py-20 pb-96" style={{scrollMarginTop: '4rem'}}>
+    <section id="work-history" className="min-h-screen bg-dark-bg transition-colors duration-300 py-20 pb-96" style={{scrollMarginTop: '4rem'}}>
       <div className="flex items-center justify-center px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl w-full">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mb-6">
             <GradientText
-              animationSpeed={13}
+              animationSpeed={15}
               showBorder={false}
               fontWeight={700}
             >
               Experience
             </GradientText>
           </h2>
-          <p className="text-sm text-gray-400 light:text-gray-600 max-w-3xl mx-auto uppercase font-bold tracking-wide transition-colors duration-300">
+          <p className="text-sm text-gray-400 max-w-3xl mx-auto uppercase font-bold tracking-wide transition-colors duration-300">
             The positions I have worked in my career so far
           </p>
         </div>
@@ -114,7 +113,7 @@ const WorkHistory = () => {
                 )}
                 
                 {/* Timeline Dot at center */}
-                <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-secondary-500 light:bg-orange-500 rounded-full border-4 border-dark-bg light:border-white shadow-lg z-10 transition-colors duration-300"></div>
+                <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-secondary-500 rounded-full border-4 border-dark-bg shadow-lg z-10 transition-colors duration-300"></div>
               </div>
             ))}
           </div>
@@ -142,10 +141,9 @@ interface ExperienceCardProps {
 }
 
 const ExperienceCard = ({ experience }: ExperienceCardProps) => {
-  const { theme } = useTheme();
   return (
     <div className="relative h-full min-h-[160px]">
-      <div className="relative h-full rounded-2xl border-2 border-dark-border light:border-gray-300 p-2 md:rounded-3xl md:p-3 transition-colors duration-300">
+      <div className="relative h-full rounded-2xl border-2 border-dark-border p-2 md:rounded-3xl md:p-3 transition-colors duration-300">
         <GlowingEffect
           spread={40}
           glow={true}
@@ -153,7 +151,7 @@ const ExperienceCard = ({ experience }: ExperienceCardProps) => {
           proximity={60}
           inactiveZone={0.01}
         />
-        <div className="relative flex h-full flex-col justify-between gap-4 overflow-hidden rounded-xl p-4 md:p-5 backdrop-blur-sm bg-dark-surface/50 light:bg-gray-100/85 transition-colors duration-300">
+        <div className="relative flex h-full flex-col justify-between gap-4 overflow-hidden rounded-xl p-4 md:p-5 backdrop-blur-sm bg-dark-surface/50 transition-colors duration-300">
           <div className="relative flex flex-1 gap-6">
             {/* Logo column - left side */}
             <div className="flex-1 flex items-center justify-center">
@@ -187,7 +185,7 @@ const ExperienceCard = ({ experience }: ExperienceCardProps) => {
                       }`}
                       style={{
                         filter: experience.title === "UPES" 
-                          ? (theme === 'dark' ? 'invert(1) brightness(2) contrast(2)' : 'none')
+                          ? 'invert(1) brightness(2) contrast(2)'
                           : 'var(--logo-filter, none)'
                       }}
                     />
@@ -198,13 +196,13 @@ const ExperienceCard = ({ experience }: ExperienceCardProps) => {
             
             {/* Content column - right side */}
             <div className="flex-1 flex flex-col justify-center space-y-3">
-              <h4 className="font-sans text-sm font-bold text-secondary-400 light:text-orange-500 md:text-base">
+              <h4 className="font-sans text-sm font-bold text-secondary-400 md:text-base">
                 {experience.subtitle}
               </h4>
-              <p className="font-sans text-xs text-dark-text-secondary light:text-light-text-secondary md:text-sm leading-relaxed transition-colors duration-300">
+              <p className="font-sans text-xs text-dark-text-secondary md:text-sm leading-relaxed transition-colors duration-300">
                 {experience.description}
               </p>
-              <div className="px-3 py-1 bg-secondary-500/20 light:bg-orange-500/20 text-secondary-300 light:text-black rounded-md text-sm font-medium w-fit">
+              <div className="px-3 py-1 bg-secondary-500/20 text-secondary-300 rounded-md text-sm font-medium w-fit">
                 {experience.dateRange}
               </div>
             </div>

@@ -1,9 +1,7 @@
 import DarkVeil from './DarkVeil';
-import { useTheme } from '../contexts/ThemeContext';
 import { useState, useEffect } from 'react';
 
 const Hero = () => {
-  const { theme } = useTheme();
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
@@ -20,7 +18,7 @@ const Hero = () => {
   }, []);
   
   return (
-    <section id="hero" className="h-screen bg-dark-bg light:bg-white relative overflow-hidden transition-colors duration-300">
+    <section id="hero" className="h-screen bg-dark-bg relative overflow-hidden transition-colors duration-300">
       {/* Background - Single DarkVeil that transitions smoothly */}
       <div className="absolute inset-0 w-full h-full z-0">
         <DarkVeil 
@@ -31,18 +29,17 @@ const Hero = () => {
           scanlineFrequency={0}
           warpAmount={0.1}
           resolutionScale={1}
-          backgroundMode={theme}
         />
       </div>
       
       {/* Content Overlay */}
       <div className="absolute inset-0 flex items-center justify-center z-10">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-semibold text-dark-text light:text-black mb-6 transition-colors duration-300">
+        <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-semibold text-dark-text mb-6 transition-colors duration-300">
           Hi, I'm{' '}
-          <span className="text-dark-text light:text-black">Swastik!</span>
+          <span className="text-dark-text">Swastik!</span>
         </h1>
-        <p className="text-sm sm:text-base md:text-lg lg:text-xl text-dark-text-secondary light:text-gray-600 max-w-2xl mx-auto leading-relaxed transition-colors duration-300">
+        <p className="text-sm sm:text-base md:text-lg lg:text-xl text-dark-text-secondary max-w-2xl mx-auto leading-relaxed transition-colors duration-300">
           Good to see you here! Welcome to my portfolio
         </p>
         </div>
@@ -56,7 +53,7 @@ const Hero = () => {
       >
         <a 
           href="#about" 
-          className="text-gray-400 light:text-gray-500 hover:text-gray-300 light:hover:text-gray-400 transition-colors duration-300 cursor-pointer inline-block animate-bounce"
+          className="text-gray-400 hover:text-gray-300 transition-colors duration-300 cursor-pointer inline-block animate-bounce"
           style={{
             animationDuration: '2s',
             animationIterationCount: 'infinite'

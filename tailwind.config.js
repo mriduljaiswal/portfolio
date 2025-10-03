@@ -51,13 +51,6 @@ export default {
   				'text-secondary': '#D1D1D1',
   				border: '#333333'
   			},
-			light: {
-  				bg: '#ffffff',
-  				surface: '#f8f9faff',
-  				text: '#000000',
-  				'text-secondary': '#374151',
-  				border: '#e5e7eb'
-  			},
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {

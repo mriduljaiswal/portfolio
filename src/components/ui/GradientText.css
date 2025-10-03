@@ -45,11 +45,8 @@
   0% {
     background-position: 200% 50%;
   }
-  50% {
-    background-position: 100% 50%;
-  }
   100% {
-    background-position: 0% 50%;
+    background-position: -200% 50%;
   }
 }
 
@@ -61,7 +58,7 @@
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
-  animation: gradient ease-in-out infinite;
+  animation: gradient linear infinite;
   will-change: background-position;
   transform: translateZ(0); /* Force hardware acceleration */
 }
