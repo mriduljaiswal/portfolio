@@ -15,15 +15,10 @@ function App() {
         <main>
           <Hero />
           <About />
-          <Skills />
           <WorkHistory />
+          <Skills />
           <Contact />
         </main>
-        
-        {/* Footer text */}
-        <div className="text-center py-8 text-sm text-gray-500 light:text-gray-600">
-          Designed by Swastik | Built in React
-        </div>
         
         <ThemeToggle />
       </div>

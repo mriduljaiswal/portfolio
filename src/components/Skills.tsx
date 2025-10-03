@@ -2,6 +2,7 @@ import { GlowingEffect } from "../components/ui/glowing-effect";
 import GradientText from './ui/GradientText';
 
 const Skills = () => {
+
   const skillCategories = [
     {
       title: 'Frontend',
@@ -41,9 +42,9 @@ const Skills = () => {
 
   return (
     <section id="skills" className="h-screen bg-dark-bg light:bg-white transition-colors duration-300 relative" style={{scrollMarginTop: '4rem'}}>
-      <div className="absolute flex items-start justify-center px-4 sm:px-6 lg:px-8" style={{top: '40%', left: '0', right: '0', transform: 'translateY(-50%)'}}>
+      <div className="absolute flex items-start justify-center px-4 sm:px-6 lg:px-8 z-10" style={{top: '40%', left: '0', right: '0', transform: 'translateY(-50%)'}}>
         <div className="max-w-6xl w-full text-center">
-        <h2 className="text-4xl md:text-5xl font-black mb-6 leading-tight" style={{ lineHeight: '1.3' }}>
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mb-6 leading-tight" style={{ lineHeight: '1.3' }}>
           <GradientText
             animationSpeed={13}
             showBorder={false}
@@ -56,7 +57,7 @@ const Skills = () => {
           HERE ARE SOME OF THE TECHNOLOGIES AND TOOLS I WORK WITH
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
           {skillCategories.map((category, index) => (
             <SkillCard key={index} category={category} />
           ))}
@@ -79,19 +80,20 @@ const SkillCard = ({ category }: SkillCardProps) => {
     <div className="relative h-full min-h-[300px]">
       <div className="relative h-full rounded-2xl border-2 border-dark-border light:border-gray-300 p-2 md:rounded-3xl md:p-3 transition-colors duration-300">
         <GlowingEffect
-          spread={60}
+          spread={40}
           glow={true}
           disabled={false}
-          proximity={80}
-          inactiveZone={0.01}
+          proximity={60}
+          inactiveZone={0.05}
+          movementDuration={4}
         />
         <div className="relative flex h-full flex-col justify-between gap-6 overflow-hidden rounded-xl p-6 md:p-6 backdrop-blur-sm bg-dark-surface/50 light:bg-gray-100/85 transition-colors duration-300">
           <div className="relative flex flex-1 flex-col gap-6">
             <div className="space-y-4">
-              <h3 className="font-sans text-xl font-medium text-balance text-dark-text light:text-light-text md:text-2xl text-center transition-colors duration-300">
+              <h3 className="font-sans text-lg sm:text-xl md:text-2xl font-medium text-balance text-dark-text light:text-light-text text-center transition-colors duration-300">
                 {category.title}
               </h3>
-              <div className="grid grid-cols-3 gap-4 justify-items-center">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3 md:gap-4 justify-items-center">
                 {category.skills.map((skill, skillIndex) => (
                   <div
                     key={skillIndex}
@@ -101,9 +103,9 @@ const SkillCard = ({ category }: SkillCardProps) => {
                     <img 
                       src={skill.logo} 
                       alt={skill.name}
-                      className="w-8 h-8 md:w-10 md:h-10 transition-transform duration-200 group-hover:scale-110"
+                      className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 transition-transform duration-200 group-hover:scale-110"
                     />
-                    <span className="text-xs text-dark-text-secondary light:text-light-text-secondary text-center leading-tight transition-colors duration-300">
+                    <span className="text-[10px] sm:text-xs text-dark-text-secondary light:text-light-text-secondary text-center leading-tight transition-colors duration-300">
                       {skill.name}
                     </span>
                   </div>

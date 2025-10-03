@@ -28,8 +28,9 @@ export default function GradientText({
 
   const gradientStyle = {
     backgroundImage: `linear-gradient(to right, ${finalColors.join(', ')})`,
-    animationDuration: `${animationSpeed}s`,
-    fontWeight: fontWeight
+    animationDuration: `${animationSpeed * 2}s`, // Slower animation for better performance
+    fontWeight: fontWeight,
+    willChange: 'background-position' // Optimize for animations
   };
 
   return (

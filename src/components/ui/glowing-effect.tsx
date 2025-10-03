@@ -25,9 +25,9 @@ const GlowingEffect = memo(
     variant = "default",
     glow = false,
     className,
-    movementDuration = 2,
+    movementDuration = 3, // Slower for better performance
     borderWidth = 1,
-    disabled = true,
+    disabled = false, // Enable by default but optimize
   }: GlowingEffectProps) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const lastPosition = useRef({ x: 0, y: 0 });

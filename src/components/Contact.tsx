@@ -2,10 +2,10 @@ import GradientText from './ui/GradientText';
 
 const Contact = () => {
   return (
-    <section id="contact" className="h-screen bg-dark-bg light:bg-white transition-colors duration-300 relative" style={{scrollMarginTop: '4rem'}}>
-      <div className="absolute flex items-start justify-center px-4 sm:px-6 lg:px-8" style={{top: '40%', left: '0', right: '0', transform: 'translateY(-50%)'}}>
+    <section id="contact" className="h-screen bg-dark-bg light:bg-white transition-colors duration-300 relative flex flex-col" style={{scrollMarginTop: '4rem'}}>
+      <div className="flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl w-full text-center">
-        <h2 className="text-4xl md:text-5xl font-black mb-6">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mb-6">
           <GradientText
             animationSpeed={13}
             showBorder={false}
@@ -14,35 +14,64 @@ const Contact = () => {
             Let's Connect!
           </GradientText>
         </h2>
-        <p className="text-base text-dark-text-secondary light:text-gray-600 max-w-full mx-auto mt-8 mb-16 transition-colors duration-300">
+        <p className="text-sm sm:text-base text-dark-text-secondary light:text-gray-600 max-w-full mx-auto mt-6 sm:mt-8 mb-12 sm:mb-16 transition-colors duration-300">
           Have something on your mind? Let's share thoughts, swap ideas, or simply start a conversation!
         </p>
 
-        <div className="flex items-center justify-center gap-8">
-          <a 
-            href="mailto:swastikmishra.career@gmail.com" 
-            className="hover:scale-105 transition-transform duration-200"
-            title="swastikmishra.career@gmail.com"
-          >
-            <img 
-              src="https://icons.veryicon.com/png/o/brands/application-logo/gmail-45.png" 
-              alt="Gmail"
-              className="w-10 h-10"
-            />
-          </a>
-          
-          <a 
-            href="https://in.linkedin.com/in/swastik-mishra-1128bb20a" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="text-secondary-400 hover:text-secondary-300 transition-colors"
-          >
-            <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-            </svg>
-          </a>
+
+
+        {/* Terminal Component with Resume Viewer */}
+        <div className="flex justify-center px-4 sm:px-0">
+          <div className="w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-2xl">
+            <div className="bg-dark-bg light:bg-white border border-gray-700 light:border-gray-300 rounded-xl overflow-hidden">
+              {/* Terminal Header */}
+              <div className="flex justify-between items-center border-b border-gray-700 light:border-gray-300 p-2 sm:p-3 md:p-4">
+                <div className="flex flex-row gap-x-1 sm:gap-x-2">
+                  <div className="h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-red-500"></div>
+                  <div className="h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-yellow-500"></div>
+                  <div className="h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-green-500"></div>
+                </div>
+                
+                {/* Download Icon in Top Bar */}
+                <a
+                  href="https://drive.google.com/file/d/1tFUZdyPnPkIFZuYqbenISny19xMuwP1T/view"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 light:text-gray-600 hover:text-gray-300 light:hover:text-gray-500 transition-colors duration-300"
+                  title="Download Resume"
+                >
+                  <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                </a>
+              </div>
+              
+              {/* Terminal Content */}
+              <div className="p-2 sm:p-3 md:p-4">
+                {/* Resume Viewer with Aspect Ratio */}
+                <div className="bg-white rounded overflow-hidden" style={{aspectRatio: '420 / 297'}}>
+                  <iframe
+                    src="https://drive.google.com/file/d/1tFUZdyPnPkIFZuYqbenISny19xMuwP1T/preview"
+                    width="100%"
+                    height="100%"
+                    className="border-0"
+                    title="Swastik's Resume"
+                    allow="autoplay"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+        
         </div>
+      </div>
+      
+      {/* Footer at bottom of Contact section */}
+      <div className="pb-8 text-center">
+        <p className="text-sm text-gray-500 light:text-gray-400 transition-colors duration-300">
+          Designed by Swastik | Built in React
+        </p>
       </div>
     </section>
   )

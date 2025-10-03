@@ -61,11 +61,11 @@ const WorkHistory = () => {
   ];
 
   return (
-    <section id="work-history" className="min-h-screen bg-dark-bg light:bg-white transition-colors duration-300 py-20" style={{scrollMarginTop: '4rem'}}>
+    <section id="work-history" className="min-h-screen bg-dark-bg light:bg-white transition-colors duration-300 py-20 pb-96" style={{scrollMarginTop: '4rem'}}>
       <div className="flex items-center justify-center px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl w-full">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-black mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mb-6">
             <GradientText
               animationSpeed={13}
               showBorder={false}
@@ -204,7 +204,7 @@ const ExperienceCard = ({ experience }: ExperienceCardProps) => {
               <p className="font-sans text-xs text-dark-text-secondary light:text-light-text-secondary md:text-sm leading-relaxed transition-colors duration-300">
                 {experience.description}
               </p>
-              <div className="px-3 py-1 bg-secondary-500/20 light:bg-orange-500/20 text-secondary-300 light:text-orange-400 rounded-md text-sm font-medium w-fit">
+              <div className="px-3 py-1 bg-secondary-500/20 light:bg-orange-500/20 text-secondary-300 light:text-black rounded-md text-sm font-medium w-fit">
                 {experience.dateRange}
               </div>
             </div>

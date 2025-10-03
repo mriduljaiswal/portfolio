@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { Renderer, Program, Mesh, Triangle, Vec2 } from 'ogl';
 import './DarkVeil.css';
 
@@ -98,6 +98,8 @@ export default function DarkVeil({
   backgroundMode = 'dark'
 }: DarkVeilProps) {
   const ref = useRef<HTMLCanvasElement>(null);
+  const rendererRef = useRef<Renderer | null>(null);
+  const programRef = useRef<Program | null>(null);
   
   useEffect(() => {
     const canvas = ref.current;
@@ -110,6 +112,7 @@ export default function DarkVeil({
       dpr: Math.min(window.devicePixelRatio, 2),
       canvas
     });
+    rendererRef.current = renderer;
 
     const gl = renderer.gl;
     const geometry = new Triangle(gl);
@@ -127,6 +130,7 @@ export default function DarkVeil({
         uWarp: { value: warpAmount }
       }
     });
+    programRef.current = program;
 
     const mesh = new Mesh(gl, { geometry, program });
 
@@ -145,11 +149,6 @@ export default function DarkVeil({
 
     const loop = () => {
       program.uniforms.uTime.value = ((performance.now() - start) / 1000) * speed;
-      program.uniforms.uHueShift.value = hueShift;
-      program.uniforms.uNoise.value = noiseIntensity;
-      program.uniforms.uScan.value = scanlineIntensity;
-      program.uniforms.uScanFreq.value = scanlineFrequency;
-      program.uniforms.uWarp.value = warpAmount;
       renderer.render({ scene: mesh });
       frame = requestAnimationFrame(loop);
     };
@@ -159,8 +158,23 @@ export default function DarkVeil({
     return () => {
       cancelAnimationFrame(frame);
       window.removeEventListener('resize', resize);
+      rendererRef.current = null;
+      programRef.current = null;
     };
-  }, [hueShift, noiseIntensity, scanlineIntensity, speed, scanlineFrequency, warpAmount, resolutionScale]);
+  }, [speed, resolutionScale]); // Only restart animation if speed or resolution changes
+
+  // Update uniforms smoothly without restarting animation
+  useEffect(() => {
+    const program = programRef.current;
+    if (!program) return;
+    
+    // Smoothly update the uniforms - this preserves animation state
+    program.uniforms.uHueShift.value = hueShift;
+    program.uniforms.uNoise.value = noiseIntensity;
+    program.uniforms.uScan.value = scanlineIntensity;
+    program.uniforms.uScanFreq.value = scanlineFrequency;
+    program.uniforms.uWarp.value = warpAmount;
+  }, [hueShift, noiseIntensity, scanlineIntensity, scanlineFrequency, warpAmount]);
 
   return <canvas ref={ref} className={`darkveil-canvas ${backgroundMode === 'light' ? 'darkveil-light-mode' : ''}`} />;
 }
