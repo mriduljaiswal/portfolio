@@ -1,6 +1,6 @@
 import DarkVeil from './DarkVeil';
 import { useState, useEffect, useCallback, useMemo, memo } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion } from 'motion/react';
 
 const Hero = memo(() => {
   const [isVisible, setIsVisible] = useState(true);

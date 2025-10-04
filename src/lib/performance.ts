@@ -31,7 +31,6 @@ export const getDeviceCapabilities = (): DeviceCapabilities => {
   }
   
   const renderer = gl.getParameter(gl.RENDERER) || '';
-  const vendor = gl.getParameter(gl.VENDOR) || '';
   const maxTextureSize = gl.getParameter(gl.MAX_TEXTURE_SIZE) || 0;
   
   // Detect performance level based on GPU and device characteristics
