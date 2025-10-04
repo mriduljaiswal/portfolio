@@ -45,7 +45,7 @@ const Hero = memo(() => {
     // Animation sequence - synchronized with App content timing
     const timer2 = setTimeout(() => {
       setBackgroundVisible(true);
-    }, 3000); // Show background with content fade (3 seconds)
+    }, 2800); // Show background with content fade (2.8 seconds)
 
     // Show scroll indicator after header animation completes
     const timer3 = setTimeout(() => {

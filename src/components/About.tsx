@@ -1,3 +1,4 @@
+import { motion } from 'motion/react'
 import GradientText from './ui/GradientText'
 import { GlowingEffect } from './ui/glowing-effect'
 
@@ -9,7 +10,13 @@ const About = () => {
     <section id="about" className="h-screen bg-dark-bg transition-colors duration-300 relative" style={{scrollMarginTop: '4rem'}}>
       <div className="absolute flex items-start justify-center px-4 sm:px-6 lg:px-8" style={{top: '40%', left: '0', right: '0', transform: 'translateY(-50%)'}}>
         <div className="max-w-6xl w-full text-center">
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mb-12">
+        <motion.h2 
+          className="text-3xl sm:text-4xl md:text-5xl font-black mb-12"
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+          viewport={{ once: true, amount: 0.3 }}
+        >
           <GradientText
             animationSpeed={15}
             showBorder={false}
@@ -17,13 +24,19 @@ const About = () => {
           >
             About Me
           </GradientText>
-        </h2>
+        </motion.h2>
 
         {/* Main Content Layout: Image on left, Content on right - Same height */}
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col lg:flex-row items-stretch gap-8 lg:gap-8 mb-8">
             {/* Left Side - Image with Tilt Effect and Card Styling - 50% width */}
-            <div className="w-full lg:w-1/2 flex justify-center">
+            <motion.div 
+              className="w-full lg:w-1/2 flex justify-center"
+              initial={{ opacity: 0, y: 80 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.2 }}
+              viewport={{ once: true, amount: 0.3 }}
+            >
               <Tilt rotationFactor={8} isRevese>
                 <div className="relative w-full h-full rounded-2xl border-2 border-dark-border p-2 md:rounded-3xl md:p-3 transition-colors duration-300" style={{maxWidth: '349px'}}>
                   <GlowingEffect
@@ -42,28 +55,64 @@ const About = () => {
                   </div>
                 </div>
               </Tilt>
-            </div>
+            </motion.div>
 
             {/* Right Side - Content - 50% width */}
-            <div className="w-full lg:w-1/2 text-left lg:text-left">
+            <motion.div 
+              className="w-full lg:w-1/2 text-left lg:text-left"
+              initial={{ opacity: 0, y: 80 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.4 }}
+              viewport={{ once: true, amount: 0.3 }}
+            >
               <div className="space-y-6">
-                <p className="text-dark-text-secondary text-lg leading-relaxed transition-colors duration-300">
+                <motion.p 
+                  className="text-dark-text-secondary text-lg leading-relaxed transition-colors duration-300"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.6 }}
+                  viewport={{ once: true, amount: 0.8 }}
+                >
                   Hey, I'm Swastik, a software engineer who enjoys building systems that perform. 
-                </p>
-                <p className="text-dark-text-secondary text-lg leading-relaxed transition-colors duration-300">
+                </motion.p>
+                <motion.p 
+                  className="text-dark-text-secondary text-lg leading-relaxed transition-colors duration-300"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.7 }}
+                  viewport={{ once: true, amount: 0.8 }}
+                >
                   At <em>Microsoft</em>, I work on AMC Portal used by millions! Before that I spent time at <em>Samsung</em> making Android devices faster and more reliable. I care about simplicity, performance, and writing code that lasts.
-                </p>
-                <p className="text-dark-text-secondary text-lg leading-relaxed transition-colors duration-300">
+                </motion.p>
+                <motion.p 
+                  className="text-dark-text-secondary text-lg leading-relaxed transition-colors duration-300"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.8 }}
+                  viewport={{ once: true, amount: 0.8 }}
+                >
                   Along the way, I've filed <em>patents</em> in listener-aware audio encoding and VR locomotion controls, contributing to enhancing user experience to give people more.
-                </p>
-                <p className="text-dark-text-secondary text-lg leading-relaxed transition-colors duration-300">
+                </motion.p>
+                <motion.p 
+                  className="text-dark-text-secondary text-lg leading-relaxed transition-colors duration-300"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.9 }}
+                  viewport={{ once: true, amount: 0.8 }}
+                >
                   Away from code, I'm big on exploring sound, stories, and spaces - from music and films to new places.
                   These experiences keep me curious and bring me fresh perspective back into my work.
-                </p>
+                </motion.p>
               </div>
               
               {/* Social Links - Left aligned under content */}
-              <div className="flex items-center justify-start gap-8 mt-8">
+              <motion.div 
+                className="flex items-center justify-start gap-8 mt-8"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94], delay: 1.0 }}
+                viewport={{ once: true, amount: 0.8 }}
+              >
             <a 
               href="mailto:swastikmishra.career@gmail.com" 
               className="hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/30"
@@ -100,8 +149,8 @@ const About = () => {
                 className="w-10 h-10 rounded-lg"
               />
             </a>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </div>
 
         </div>

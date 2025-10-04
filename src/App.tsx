@@ -19,10 +19,13 @@ const App = memo(function App() {
   }), []);
 
   useEffect(() => {
+    // Ensure page always starts from the top on load/reload
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
+    
     // Show content with background veil
     const contentTimer = setTimeout(() => {
       setShowContent(true)
-    }, 3000) // 3 seconds - exactly with background veil
+    }, 2800) // 2.8 seconds - exactly with background veil
 
     // Show header after 4 seconds (after both texts display and background fades)
     const headerTimer = setTimeout(() => {
@@ -46,9 +49,7 @@ const App = memo(function App() {
           right: 0,
           width: '100%',
           zIndex: 9999,
-          pointerEvents: 'auto',
-          transform: 'translateZ(0)',
-          willChange: 'transform'
+          pointerEvents: 'auto'
         }}
         initial={{ y: -100, opacity: 0 }}
         animate={{ 
@@ -61,12 +62,12 @@ const App = memo(function App() {
       </motion.div>
       
       {/* Main Content */}
-      <div className="min-h-screen bg-dark-bg text-dark-text transition-colors duration-300 gpu-accelerated">
-        <main className="gpu-accelerated">
+      <div className="min-h-screen bg-dark-bg text-dark-text transition-colors duration-300">
+        <main>
           <Hero />
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: showContent ? 1 : 0, y: showContent ? 0 : 20 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: showContent ? 1 : 0 }}
             transition={motionVariants.contentTransition}
           >
             <About />

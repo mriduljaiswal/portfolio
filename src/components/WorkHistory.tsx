@@ -1,10 +1,14 @@
 "use client";
 
+import { useState } from 'react'
+import { motion } from 'motion/react'
 import { GraduationCap, Briefcase, Building, Users } from "lucide-react";
 import { GlowingEffect } from "./ui/glowing-effect";
 import GradientText from './ui/GradientText';
 
 const WorkHistory = () => {
+  const [animateCards, setAnimateCards] = useState(false);
+  
   const experiences = [
     {
       id: 1,
@@ -64,7 +68,13 @@ const WorkHistory = () => {
       <div className="flex items-center justify-center px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl w-full">
         <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mb-6">
+          <motion.h2 
+            className="text-3xl sm:text-4xl md:text-5xl font-black mb-6"
+            initial={{ opacity: 0, y: 60 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+            viewport={{ once: true, amount: 0.3 }}
+          >
             <GradientText
               animationSpeed={15}
               showBorder={false}
@@ -72,30 +82,53 @@ const WorkHistory = () => {
             >
               Experience
             </GradientText>
-          </h2>
-          <p className="text-sm text-gray-400 max-w-3xl mx-auto uppercase font-bold tracking-wide transition-colors duration-300">
+          </motion.h2>
+          <motion.p 
+            className="text-sm text-gray-400 max-w-3xl mx-auto uppercase font-bold tracking-wide transition-colors duration-300"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.2 }}
+            viewport={{ once: true, amount: 0.3 }}
+          >
             The positions I have worked in my career so far
-          </p>
+          </motion.p>
         </div>
 
         {/* Ladder Layout */}
-        <div className="relative w-full max-w-none mx-auto">
-          {/* Simple continuous line from first to last with fade effects */}
+        <motion.div 
+          className="relative w-full max-w-none mx-auto"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          viewport={{ once: true, amount: 0.2 }}
+          onViewportEnter={() => {
+            // Trigger all card animations when section comes into view
+            setTimeout(() => setAnimateCards(true), 800);
+          }}
+        >
+          {/* Timeline line */}
           <div 
             className="absolute left-1/2 transform -translate-x-1/2 w-0.5 opacity-40"
             style={{
               top: '0',
               bottom: '0',
               zIndex: 0,
-              background: 'linear-gradient(to bottom, transparent 0%, transparent 8%, #a855f7 12%, #3b82f6 50%, #10b981 88%, transparent 92%, transparent 100%)'
+              background: 'linear-gradient(to bottom, transparent 0%, transparent 7%, #a855f7 17%, #3b82f6 45%, #10b981 70%, #f59e0b 83%, transparent 93%, transparent 100%)'
             }}
           />
           
           <div className="space-y-12">
             {experiences.slice().reverse().map((experience, index) => (
-              <div
+              <motion.div
                 key={experience.id}
                 className="relative flex items-center"
+                initial={{ opacity: 0, y: 80 }}
+                animate={animateCards ? { opacity: 1, y: 0 } : { opacity: 0, y: 80 }}
+                transition={{ 
+                  duration: 0.8, 
+                  ease: [0.25, 0.46, 0.45, 0.94], 
+                  delay: index * 0.4
+                }}
               >
                 {/* Experience Card positioned completely left or right */}
                 {index % 2 === 0 ? (
@@ -113,11 +146,13 @@ const WorkHistory = () => {
                 )}
                 
                 {/* Timeline Dot at center */}
-                <div className="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-secondary-500 rounded-full border-4 border-dark-bg shadow-lg z-10 transition-colors duration-300"></div>
-              </div>
+                <div 
+                  className="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 top-1/2 w-4 h-4 bg-purple-500 rounded-full border-4 border-dark-bg shadow-lg z-10 transition-colors duration-300"
+                />
+              </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
         </div>
       </div>
     </section>
@@ -142,7 +177,10 @@ interface ExperienceCardProps {
 
 const ExperienceCard = ({ experience }: ExperienceCardProps) => {
   return (
-    <div className="relative h-full min-h-[160px]">
+    <motion.div 
+      className="relative h-full min-h-[160px]"
+      whileHover={{ y: -8, transition: { duration: 0.3, ease: "easeOut" } }}
+    >
       <div className="relative h-full rounded-2xl border-2 border-dark-border p-2 md:rounded-3xl md:p-3 transition-colors duration-300">
         <GlowingEffect
           spread={40}
@@ -209,7 +247,7 @@ const ExperienceCard = ({ experience }: ExperienceCardProps) => {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
