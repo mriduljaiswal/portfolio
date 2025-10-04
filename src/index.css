@@ -11,11 +11,6 @@
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
     font-display: swap; /* Optimize font loading */
-    /* GPU acceleration and hardware optimization */
-    transform: translateZ(0);
-    -webkit-transform: translateZ(0);
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
     /* Hide scrollbar but keep functionality */
     overflow-x: hidden;
     overflow-y: auto;
@@ -61,6 +56,24 @@
   /* Global performance optimizations */
   * {
     box-sizing: border-box;
+  }
+
+  /* Force header to stay fixed */
+  .header-wrapper {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    z-index: 999999 !important;
+    transform: translateZ(0) !important;
+    will-change: transform !important;
+  }
+
+  /* Ensure the header element inside doesn't override positioning */
+  .header-wrapper header {
+    position: static !important;
+    width: 100% !important;
   }
   
   /* Reduce motion for users who prefer it */

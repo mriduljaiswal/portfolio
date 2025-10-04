@@ -42,15 +42,15 @@ const Hero = memo(() => {
       }
     };
 
-    // Animation sequence
+    // Animation sequence - synchronized with App content timing
     const timer2 = setTimeout(() => {
       setBackgroundVisible(true);
-    }, 3500); // Show background after 3.5 seconds
+    }, 3000); // Show background with content fade (3 seconds)
 
-    // Show scroll indicator after top bar slides down (4s + 0.6s animation + 0.4s buffer = 5s)
+    // Show scroll indicator after header animation completes
     const timer3 = setTimeout(() => {
       setScrollIndicatorVisible(true);
-    }, 5000);
+    }, 4800); // 4.8s - after header slides in (4s + 0.6s animation + 0.2s buffer)
 
     window.addEventListener('scroll', optimizedHandleScroll, { passive: true });
     
@@ -111,7 +111,7 @@ const Hero = memo(() => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ ...motionVariants.textTransition, delay: 2 }}
           >
-            <p className={`text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed transition-colors duration-700 ${
+            <p className={`text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed transition-colors duration-700 ${
               backgroundVisible ? 'text-dark-text-secondary' : 'text-gray-300'
             }`}>
               Good to see you here! Welcome to my portfolio
@@ -123,18 +123,14 @@ const Hero = memo(() => {
       {/* Scroll indicator */}
       <motion.div 
         className="absolute bottom-6 sm:bottom-8 left-1/2 transform -translate-x-1/2 z-10 animation-optimized motion-smooth"
-        initial={{ opacity: 0, y: 30, scale: 0.8 }}
+        initial={{ opacity: 0, y: 30 }}
         animate={{ 
           opacity: (isVisible && scrollIndicatorVisible) ? 1 : 0, 
-          y: (isVisible && scrollIndicatorVisible) ? 0 : 30,
-          scale: (isVisible && scrollIndicatorVisible) ? 1 : 0.8
+          y: (isVisible && scrollIndicatorVisible) ? 0 : 30
         }}
         transition={{ 
-          duration: 0.8, 
-          ease: [0.25, 0.46, 0.45, 0.94],
-          type: "spring",
-          stiffness: 100,
-          damping: 15
+          duration: 0.6, 
+          ease: [0.25, 0.46, 0.45, 0.94]
         }}
       >
         <a 

@@ -48,7 +48,7 @@ const Header = () => {
   }, [])
 
   return (
-    <header className="fixed top-0 left-0 right-0 bg-dark-bg/70 backdrop-blur-sm border-b border-dark-border z-50 transition-colors duration-300">
+    <header className="w-full bg-black/75 backdrop-blur-sm border-b border-white/40 transition-all duration-300">
       <nav className="w-full px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo - pushed more to the left */}

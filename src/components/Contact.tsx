@@ -1,11 +1,5 @@
 import GradientText from './ui/GradientText';
-
-// Simple dotted map replacement
-const DottedMap = ({ markers, ...props }: any) => (
-  <div className="w-full h-96 bg-gradient-to-br from-dark-surface to-dark-bg rounded-lg flex items-center justify-center" {...props}>
-    <p className="text-dark-text-secondary">Interactive Map</p>
-  </div>
-);
+import { DottedMap } from '../../@/components/ui/dotted-map';
 
 const markers = [
   { lat: 40.7128, lng: -74.006, size: 0.3 }, // New York
