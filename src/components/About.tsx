@@ -1,6 +1,8 @@
 import GradientText from './ui/GradientText'
-import { Tilt } from '../../components/motion-primitives/tilt'
 import { GlowingEffect } from './ui/glowing-effect'
+
+// Simple tilt replacement
+const Tilt = ({ children, ...props }: any) => <div {...props}>{children}</div>;
 
 const About = () => {
   return (
