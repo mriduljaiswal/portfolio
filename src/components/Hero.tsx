@@ -1,8 +1,11 @@
 import DarkVeil from './DarkVeil';
 import { useState, useEffect } from 'react';
+import { motion } from 'motion/react';
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(true);
+  const [showSecondText, setShowSecondText] = useState(false);
+  const [backgroundVisible, setBackgroundVisible] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -13,16 +16,43 @@ const Hero = () => {
       setIsVisible(scrollY < windowHeight * 0.2);
     };
 
+    // Animation sequence
+    const timer1 = setTimeout(() => {
+      setShowSecondText(true);
+    }, 1500); // Show second text after 1.5 seconds
+
+    const timer2 = setTimeout(() => {
+      setBackgroundVisible(true);
+    }, 3000); // Show background after 3 seconds
+
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+    };
   }, []);
   
   return (
-    <section id="hero" className="h-screen bg-dark-bg relative overflow-hidden transition-colors duration-300">
-      {/* Background - Single DarkVeil that transitions smoothly */}
-      <div className="absolute inset-0 w-full h-full z-0">
+    <section id="hero" className="h-screen relative overflow-hidden transition-colors duration-300">
+      {/* Black background that fades to reveal gradient */}
+      <motion.div 
+        className="absolute inset-0 bg-black z-0"
+        initial={{ opacity: 1 }}
+        animate={{ opacity: backgroundVisible ? 0 : 1 }}
+        transition={{ duration: 1.2, ease: "easeOut" }}
+      />
+      
+      {/* Gradient Background - Single DarkVeil that shows when black fades */}
+      <motion.div 
+        className="absolute inset-0 w-full h-full z-0"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: backgroundVisible ? 1 : 0 }}
+        transition={{ duration: 1.2, ease: "easeOut" }}
+      >
         <DarkVeil 
-          hueShift={0} // Keep original colors
+          hueShift={0}
           noiseIntensity={0.03}
           scanlineIntensity={0}
           speed={0.9}
@@ -30,41 +60,63 @@ const Hero = () => {
           warpAmount={0.1}
           resolutionScale={1}
         />
-      </div>
+      </motion.div>
       
-      {/* Content Overlay */}
+      {/* Animated Text Content */}
       <div className="absolute inset-0 flex items-center justify-center z-10">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-semibold text-dark-text mb-6 transition-colors duration-300">
-          Hi, I'm{' '}
-          <span className="text-dark-text">Swastik!</span>
-        </h1>
-        <p className="text-sm sm:text-base md:text-lg lg:text-xl text-dark-text-secondary max-w-2xl mx-auto leading-relaxed transition-colors duration-300">
-          Good to see you here! Welcome to my portfolio
-        </p>
+          <motion.div 
+            className="mb-6 sm:mb-8"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
+          >
+            <h1 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-semibold leading-tight transition-colors duration-500 ${
+              backgroundVisible ? 'text-dark-text' : 'text-white'
+            }`}>
+              Hi! I'm Swastik
+            </h1>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: showSecondText ? 1 : 0, y: showSecondText ? 0 : 30 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+          >
+            <p className={`text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed transition-colors duration-700 ${
+              backgroundVisible ? 'text-dark-text-secondary' : 'text-gray-300'
+            }`}>
+              Good to see you here! Welcome to my portfolio
+            </p>
+          </motion.div>
         </div>
       </div>
       
       {/* Scroll indicator */}
-      <div 
-        className={`absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 transition-opacity duration-500 ${
-          isVisible ? 'opacity-100' : 'opacity-0'
-        }`}
+      <motion.div 
+        className="absolute bottom-6 sm:bottom-8 left-1/2 transform -translate-x-1/2 z-10"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ 
+          opacity: isVisible ? 1 : 0, 
+          y: isVisible ? 0 : 20 
+        }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
       >
         <a 
           href="#about" 
-          className="text-gray-400 hover:text-gray-300 transition-colors duration-300 cursor-pointer inline-block animate-bounce"
-          style={{
-            animationDuration: '2s',
-            animationIterationCount: 'infinite'
-          }}
+          className="text-gray-400 hover:text-gray-300 transition-all duration-300 cursor-pointer inline-block hover:scale-110"
         >
-          <svg 
-            className="w-4 h-4" 
+          <motion.svg 
+            className="w-5 h-5 sm:w-6 sm:h-6" 
             fill="none" 
             stroke="currentColor" 
-            viewBox="0 0 24 24" 
-            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            animate={{ y: [0, 5, 0] }}
+            transition={{ 
+              duration: 2, 
+              repeat: Infinity, 
+              ease: "easeInOut" 
+            }}
           >
             <path 
               strokeLinecap="round" 
@@ -72,9 +124,9 @@ const Hero = () => {
               strokeWidth={2} 
               d="M19 9l-7 7-7-7" 
             />
-          </svg>
+          </motion.svg>
         </a>
-      </div>
+      </motion.div>
     </section>
   )
 }

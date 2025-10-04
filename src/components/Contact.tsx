@@ -1,9 +1,43 @@
 import GradientText from './ui/GradientText';
+import { DottedMap } from '../../@/components/ui/dotted-map';
+
+const markers = [
+  { lat: 40.7128, lng: -74.006, size: 0.3 }, // New York
+  { lat: 34.0522, lng: -118.2437, size: 0.3 }, // Los Angeles
+  { lat: 51.5074, lng: -0.1278, size: 0.3 }, // London
+  { lat: -33.8688, lng: 151.2093, size: 0.3 }, // Sydney
+  { lat: 48.8566, lng: 2.3522, size: 0.3 }, // Paris
+  { lat: 35.6762, lng: 139.6503, size: 0.3 }, // Tokyo
+  { lat: 55.7558, lng: 37.6176, size: 0.3 }, // Moscow
+  { lat: 39.9042, lng: 116.4074, size: 0.3 }, // Beijing
+  { lat: 28.6139, lng: 77.209, size: 0.3 }, // New Delhi
+  { lat: -23.5505, lng: -46.6333, size: 0.3 }, // São Paulo
+  { lat: 1.3521, lng: 103.8198, size: 0.3 }, // Singapore
+  { lat: 25.2048, lng: 55.2708, size: 0.3 }, // Dubai
+  { lat: 52.52, lng: 13.405, size: 0.3 }, // Berlin
+  { lat: 19.4326, lng: -99.1332, size: 0.3 }, // Mexico City
+  { lat: -26.2041, lng: 28.0473, size: 0.3 }, // Johannesburg
+];
 
 const Contact = () => {
   return (
-    <section id="contact" className="h-screen bg-dark-bg transition-colors duration-300 relative flex flex-col" style={{scrollMarginTop: '4rem'}}>
-      <div className="flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8">
+    <section id="contact" className="h-screen bg-black transition-colors duration-300 relative flex flex-col overflow-hidden" style={{scrollMarginTop: '4rem'}}>
+      {/* Dotted Map Background - 90% coverage */}
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute inset-0 w-[90%] h-[90%] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/30 to-black/80 z-10" />
+          <DottedMap 
+            width={150}
+            height={75}
+            markers={markers}
+            dotColor="#d6dce8ff"
+            markerColor="#6017e8ff"
+            className="w-full h-full"
+          />
+        </div>
+      </div>
+      
+      <div className="relative z-20 flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl w-full text-center">
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mb-6">
           <GradientText
@@ -68,9 +102,12 @@ const Contact = () => {
       </div>
       
       {/* Footer at bottom of Contact section */}
-      <div className="pb-8 text-center">
+      <div className="absolute bottom-4 left-0 right-0 z-30 text-center">
+        <p className="text-sm text-gray-500 transition-colors duration-300 leading-tight">
+          Designed by Swastik
+        </p>
         <p className="text-sm text-gray-500 transition-colors duration-300">
-          Designed by Swastik | Built in React
+          Built in React
         </p>
       </div>
     </section>
