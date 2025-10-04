@@ -10,8 +10,15 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    font-display: swap; /* Optimize font loading */
+    /* GPU acceleration and hardware optimization */
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
     /* Hide scrollbar but keep functionality */
     overflow-x: hidden;
+    overflow-y: auto;
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* Internet Explorer 10+ */
   }
@@ -25,8 +32,9 @@
   
   body {
     @apply bg-dark-bg text-dark-text font-sans;
-    /* Hide scrollbar for all browsers */
+    /* Hide scrollbar for all browsers but allow vertical scrolling */
     overflow-x: hidden;
+    overflow-y: auto;
     scrollbar-width: none !important; /* Firefox */
     -ms-overflow-style: none !important; /* Internet Explorer 10+ */
   }
@@ -156,6 +164,46 @@
 .light {
   --logo-filter: brightness(0.1) contrast(3) saturate(0.5);
   --upes-logo-filter: none;
+}
+
+/* GPU Acceleration and Performance Classes */
+.gpu-accelerated {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  perspective: 1000px;
+  -webkit-perspective: 1000px;
+}
+
+.animation-optimized {
+  will-change: transform, opacity;
+  contain: paint;
+  isolation: isolate;
+}
+
+.motion-smooth {
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  animation-fill-mode: both;
+}
+
+.performance-layer {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  contain: layout paint;
+}
+
+/* Optimized transition classes */
+.transition-optimized {
+  transition-property: transform, opacity;
+  transition-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.scroll-optimized {
+  transform: translateZ(0);
+  -webkit-overflow-scrolling: touch;
+  contain: paint;
 }
 
 /* Dark mode - All logos should be white */

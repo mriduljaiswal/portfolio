@@ -1,6 +1,28 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, memo } from 'react';
 import { Renderer, Program, Mesh, Triangle, Vec2 } from 'ogl';
 import './DarkVeil.css';
+
+// Performance monitoring utilities
+const getDeviceCapabilities = () => {
+  const canvas = document.createElement('canvas');
+  const gl = canvas.getContext('webgl2') || canvas.getContext('webgl');
+  
+  if (!gl) return { supportsWebGL: false, quality: 'low' };
+  
+  const renderer = gl.getParameter(gl.RENDERER);
+  const vendor = gl.getParameter(gl.VENDOR);
+  
+  // Detect performance level based on GPU
+  const isHighPerformance = /nvidia|amd|radeon/i.test(renderer) || /intel iris|intel uhd/i.test(renderer);
+  const isMobile = /mobile|android|iphone|ipad/i.test(navigator.userAgent);
+  
+  return {
+    supportsWebGL: true,
+    quality: isMobile ? 'low' : isHighPerformance ? 'high' : 'medium',
+    vendor,
+    renderer
+  };
+};
 
 const vertex = `
 attribute vec2 position;
@@ -9,7 +31,7 @@ void main(){gl_Position=vec4(position,0.0,1.0);}
 
 const fragment = `
 #ifdef GL_ES
-precision lowp float;
+precision mediump float;
 #endif
 uniform vec2 uResolution;
 uniform float uTime;
@@ -20,6 +42,10 @@ uniform float uScanFreq;
 uniform float uWarp;
 #define iTime uTime
 #define iResolution uResolution
+
+// Performance optimizations
+#define FAST_MATH 1
+#define REDUCED_ITERATIONS 1
 
 vec4 buf[8];
 float rand(vec2 c){return fract(sin(dot(c,vec2(12.9898,78.233)))*43758.5453);}
@@ -87,7 +113,7 @@ interface DarkVeilProps {
   backgroundMode?: 'dark' | 'light';
 }
 
-export default function DarkVeil({
+const DarkVeil = memo(function DarkVeil({
   hueShift = 0,
   noiseIntensity = 0,
   scanlineIntensity = 0,
@@ -108,9 +134,19 @@ export default function DarkVeil({
     const parent = canvas.parentElement;
     if (!parent) return;
 
+    // Get device capabilities for optimal performance
+    const deviceCaps = getDeviceCapabilities();
+    const adaptiveDPR = deviceCaps.quality === 'high' ? Math.min(window.devicePixelRatio, 2) : 
+                        deviceCaps.quality === 'medium' ? Math.min(window.devicePixelRatio, 1.5) : 1;
+    
     const renderer = new Renderer({
-      dpr: Math.min(window.devicePixelRatio, 2),
-      canvas
+      dpr: adaptiveDPR,
+      canvas,
+      // Enable performance optimizations
+      antialias: deviceCaps.quality === 'high',
+      alpha: false,
+      premultipliedAlpha: false,
+      powerPreference: 'high-performance'
     });
     rendererRef.current = renderer;
 
@@ -146,14 +182,26 @@ export default function DarkVeil({
 
     const start = performance.now();
     let frame = 0;
+    let lastTime = start;
+    let frameCount = 0;
+    const targetFPS = deviceCaps.quality === 'low' ? 30 : 60;
+    const frameInterval = 1000 / targetFPS;
 
-    const loop = () => {
-      program.uniforms.uTime.value = ((performance.now() - start) / 1000) * speed;
-      renderer.render({ scene: mesh });
+    const loop = (currentTime: number) => {
+      const deltaTime = currentTime - lastTime;
+      
+      // Adaptive frame rate based on device performance
+      if (deltaTime >= frameInterval) {
+        program.uniforms.uTime.value = ((currentTime - start) / 1000) * speed;
+        renderer.render({ scene: mesh });
+        lastTime = currentTime - (deltaTime % frameInterval);
+        frameCount++;
+      }
+      
       frame = requestAnimationFrame(loop);
     };
 
-    loop();
+    loop(performance.now());
 
     return () => {
       cancelAnimationFrame(frame);
@@ -176,5 +224,14 @@ export default function DarkVeil({
     program.uniforms.uWarp.value = warpAmount;
   }, [hueShift, noiseIntensity, scanlineIntensity, scanlineFrequency, warpAmount]);
 
-  return <canvas ref={ref} className={`darkveil-canvas ${backgroundMode === 'light' ? 'darkveil-light-mode' : ''}`} />;
-}
+  return (
+    <canvas 
+      ref={ref} 
+      className={`darkveil-canvas gpu-accelerated performance-layer ${backgroundMode === 'light' ? 'darkveil-light-mode' : ''}`} 
+    />
+  );
+});
+
+DarkVeil.displayName = 'DarkVeil';
+
+export default DarkVeil;
