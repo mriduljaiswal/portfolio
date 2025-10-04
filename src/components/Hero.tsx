@@ -4,7 +4,6 @@ import { motion } from 'motion/react';
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(true);
-  const [showSecondText, setShowSecondText] = useState(false);
   const [backgroundVisible, setBackgroundVisible] = useState(false);
 
   useEffect(() => {
@@ -17,19 +16,14 @@ const Hero = () => {
     };
 
     // Animation sequence
-    const timer1 = setTimeout(() => {
-      setShowSecondText(true);
-    }, 1500); // Show second text after 1.5 seconds
-
     const timer2 = setTimeout(() => {
       setBackgroundVisible(true);
-    }, 3000); // Show background after 3 seconds
+    }, 3500); // Show background after 2.8 seconds
 
     window.addEventListener('scroll', handleScroll);
     
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      clearTimeout(timer1);
       clearTimeout(timer2);
     };
   }, []);
@@ -67,9 +61,9 @@ const Hero = () => {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div 
             className="mb-6 sm:mb-8"
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
+            transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.3 }}
           >
             <h1 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-semibold leading-tight transition-colors duration-500 ${
               backgroundVisible ? 'text-dark-text' : 'text-white'
@@ -79,9 +73,9 @@ const Hero = () => {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: showSecondText ? 1 : 0, y: showSecondText ? 0 : 30 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94], delay: 2 }}
           >
             <p className={`text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed transition-colors duration-700 ${
               backgroundVisible ? 'text-dark-text-secondary' : 'text-gray-300'
