@@ -33,7 +33,7 @@ const About = () => {
                   />
                   <div className="relative h-full overflow-hidden rounded-xl backdrop-blur-sm bg-dark-surface/50 transition-colors duration-300 flex items-center justify-center">
                     <img 
-                      src="/img/me.jpg" 
+                      src="img/me.jpg" 
                       alt="Swastik Mishra"
                       className="w-full h-full object-cover rounded-xl"
                     />
