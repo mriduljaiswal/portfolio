@@ -54,7 +54,7 @@ const Header = () => {
           {/* Logo - pushed more to the left */}
           <div className="flex-shrink-0">
             <a href="#hero" className="text-xl font-bold text-dark-text hover:text-dark-text transition-colors duration-200">
-              Swastik Mishra
+              Mridul Jaiswal
             </a>
           </div>
 

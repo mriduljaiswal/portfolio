@@ -48,8 +48,8 @@ const About = () => {
                   />
                   <div className="relative h-full overflow-hidden rounded-xl backdrop-blur-sm bg-dark-surface/50 transition-colors duration-300 flex items-center justify-center">
                     <img 
-                      src="img/me.jpg" 
-                      alt="Swastik Mishra"
+                      src="img/me.png" 
+                      alt="Mridul Jaiswal"
                       className="w-full h-full object-cover rounded-xl"
                     />
                   </div>
@@ -73,7 +73,7 @@ const About = () => {
                   transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.6 }}
                   viewport={{ once: true, amount: 0.8 }}
                 >
-                  Hey, I'm Swastik, a software engineer who enjoys building systems that perform. 
+                  Hey, I'm Mridul, a Senior Software Engineer who enjoys building systems that perform. 
                 </motion.p>
                 <motion.p 
                   className="text-dark-text-secondary text-lg leading-relaxed transition-colors duration-300"
@@ -82,7 +82,7 @@ const About = () => {
                   transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.7 }}
                   viewport={{ once: true, amount: 0.8 }}
                 >
-                  At <em>Microsoft</em>, I work on AMC Portal used by millions! Before that I spent time at <em>Samsung</em> making Android devices faster and more reliable. I care about simplicity, performance, and writing code that lasts.
+                  At <em>SentinelOne</em>, I work on Platform used by teams! Before that I spent time at <em>Samsung</em> as Cloud Engineer working for chat application for faster responses involving GenAI. I care about simplicity, performance, and writing code that lasts.
                 </motion.p>
                 <motion.p 
                   className="text-dark-text-secondary text-lg leading-relaxed transition-colors duration-300"
@@ -91,7 +91,7 @@ const About = () => {
                   transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.8 }}
                   viewport={{ once: true, amount: 0.8 }}
                 >
-                  Along the way, I've filed <em>patents</em> in listener-aware audio encoding and VR locomotion controls, contributing to enhancing user experience to give people more.
+                  Along the way, I've filed <em>research paper published on GeeksForGeeks</em> in Julia optmization for searching in large excel files, contributing to enhancing user experience to give people more.
                 </motion.p>
                 <motion.p 
                   className="text-dark-text-secondary text-lg leading-relaxed transition-colors duration-300"
@@ -114,9 +114,9 @@ const About = () => {
                 viewport={{ once: true, amount: 0.8 }}
               >
             <a 
-              href="mailto:swastikmishra.career@gmail.com" 
+              href="mailto:mriduljaiswalcareers1@gmail.com" 
               className="hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/30"
-              title="swastikmishra.career@gmail.com"
+              title="mriduljaiswalcareers1@gmail.com"
             >
               <img 
                 src="https://icons.veryicon.com/png/o/brands/application-logo/gmail-45.png" 
@@ -126,7 +126,7 @@ const About = () => {
             </a>
             
             <a 
-              href="https://in.linkedin.com/in/swastik-mishra-1128bb20a" 
+              href="https://in.linkedin.com/in/mriduljaiswal" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-secondary-400 hover:text-secondary-300 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/30"
@@ -136,19 +136,6 @@ const About = () => {
               </svg>
             </a>
             
-            <a 
-              href="https://leetcode.com/u/swaastikkk/" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/30"
-              title="LeetCode Profile"
-            >
-              <img 
-                src="https://scontent.fdel11-1.fna.fbcdn.net/v/t39.30808-6/305317853_616467910000160_3824851731065368025_n.png?_nc_cat=100&ccb=1-7&_nc_sid=6ee11a&_nc_aid=0&_nc_ohc=ESCvTfZAoD4Q7kNvwE7sZ2E&_nc_oc=Adkv5FHimsXjfODc9L-wx6Lh036yL9izns8uetf863TDvoBJTBhIKBP4NymFk7AbCNbqaiWlaVUUz04M3Ba5OJ6u&_nc_zt=23&_nc_ht=scontent.fdel11-1.fna&_nc_gid=o8MdcoWFt1AL6qLApK8Dyw&oh=00_AfetnBYKMMXG30SHUnmxHor1iUJzKL955Fh12YNKkyfrBA&oe=68E5731B" 
-                alt="LeetCode"
-                className="w-10 h-10 rounded-lg"
-              />
-            </a>
               </motion.div>
             </motion.div>
           </div>

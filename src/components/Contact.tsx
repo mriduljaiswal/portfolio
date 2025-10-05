@@ -111,7 +111,7 @@ const Contact = () => {
                 
                 {/* Download Icon in Top Bar */}
                 <motion.a
-                  href="https://drive.google.com/file/d/1tFUZdyPnPkIFZuYqbenISny19xMuwP1T/view"
+                  href="https://drive.google.com/file/d/1R9IqodAWX2tvLrFO4WkZQHQD53tuN1uG/view"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-400 hover:text-gray-300 transition-colors duration-300"
@@ -140,11 +140,11 @@ const Contact = () => {
                   viewport={{ once: true, amount: 0.3 }}
                 >
                   <iframe
-                    src="https://drive.google.com/file/d/1tFUZdyPnPkIFZuYqbenISny19xMuwP1T/preview"
+                    src="https://drive.google.com/file/d/1R9IqodAWX2tvLrFO4WkZQHQD53tuN1uG/preview"
                     width="100%"
                     height="100%"
                     className="border-0"
-                    title="Swastik's Resume"
+                    title="Mridul's Resume"
                     allow="autoplay"
                   />
                 </motion.div>
@@ -171,7 +171,7 @@ const Contact = () => {
           transition={{ duration: 0.5, delay: 1.2 }}
           viewport={{ once: true, amount: 0.3 }}
         >
-          Designed by Swastik
+          Designed by Mridul
         </motion.p>
         <motion.p 
           className="text-sm text-gray-500 transition-colors duration-300"

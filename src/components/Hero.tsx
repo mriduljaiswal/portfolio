@@ -101,7 +101,7 @@ const Hero = memo(() => {
             <h1 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-semibold leading-tight transition-colors duration-500 ${
               backgroundVisible ? 'text-dark-text' : 'text-white'
             }`}>
-              Hi! I'm Swastik
+              Hi! I'm Mridul
             </h1>
           </motion.div>
 

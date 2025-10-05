@@ -2,7 +2,7 @@
   "name": "portfolio",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://swastikmishra119.github.io/portfolio",
+  "homepage": "https://mriduljaiswal.github.io/portfolio",
   "type": "module",
   "scripts": {
     "predeploy": "npm run build",
@@ -43,6 +43,6 @@
     "tailwindcss": "^3.3.6",
     "terser": "^5.44.0",
     "typescript": "^5.2.2",
-    "vite": "^5.0.8"
+    "vite": "^7.1.9"
   }
 }
