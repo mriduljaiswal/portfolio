@@ -6,6 +6,16 @@ const Hero = memo(() => {
   const [isVisible, setIsVisible] = useState(true);
   const [backgroundVisible, setBackgroundVisible] = useState(false);
   const [scrollIndicatorVisible, setScrollIndicatorVisible] = useState(false);
+  const [particles, setParticles] = useState<{ id: number; x: number; y: number }[]>([]);
+  const techOrbs = [
+    { icon: "⚛️", radius: 90, speed: 6, delay: 0 },    // React
+    { icon: "🧠", radius: 110, speed: 8, delay: 0.5 },  // AI
+    { icon: "🦾", radius: 130, speed: 10, delay: 1 },   // ML
+    { icon: "🔗", radius: 100, speed: 7, delay: 1.5 },  // Blockchain
+    { icon: "🐧", radius: 120, speed: 9, delay: 2 },    // Linux
+    { icon: "⚙️", radius: 80, speed: 6.5, delay: 2.5 }, // C++
+    { icon: "☁️", radius: 140, speed: 11, delay: 3 }    // Cloud
+  ];
 
   // Optimized scroll handler with throttling
   const handleScroll = useCallback(() => {
@@ -60,6 +70,24 @@ const Hero = memo(() => {
       clearTimeout(timer3);
     };
   }, [handleScroll]);
+
+  const handleNameClick = (event: React.MouseEvent<HTMLHeadingElement>) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+  
+    const newParticles = Array.from({ length: 10 }).map((_, i) => ({
+      id: Date.now() + i,
+      x,
+      y
+    }));
+  
+    setParticles(newParticles);
+  
+    // remove after animation
+    setTimeout(() => setParticles([]), 1000);
+  };
+  
   
   return (
     <section id="hero" className="h-screen relative overflow-hidden transition-colors duration-300 gpu-accelerated">
@@ -98,11 +126,78 @@ const Hero = memo(() => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ ...motionVariants.textTransition, delay: 0.3 }}
           >
-            <h1 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-semibold leading-tight transition-colors duration-500 ${
+            {/* 🌌 Name + Orbit Container */}
+            <div className="relative inline-block">
+            <h1 
+            onClick={handleNameClick}
+            className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-semibold leading-tight transition-colors duration-500 ${
               backgroundVisible ? 'text-dark-text' : 'text-white'
             }`}>
               Hi! I'm Mridul
+              {/* 💫 Particle Burst */}
+              {particles.map((p) => (
+                <motion.span
+                  key={p.id}
+                  className="absolute text-purple-400 text-lg select-none"
+                  style={{ left: p.x, top: p.y }}
+                  initial={{ opacity: 1, scale: 1 }}
+                  animate={{
+                    opacity: 0,
+                    scale: 2,
+                    x: (Math.random() - 0.5) * 100,
+                    y: (Math.random() - 0.5) * 100,
+                    rotate: Math.random() * 360
+                  }}
+                  transition={{ duration: 1, ease: 'easeOut' }}
+                >
+                  ✦
+                </motion.span>
+              ))}
             </h1>
+                {/* 🪐 Orbiting Tech Icons */}
+    <motion.div className="absolute inset-0 pointer-events-none">
+      {techOrbs.map((orb, i) => (
+        <motion.div
+          key={i}
+          className="absolute text-2xl md:text-3xl text-purple-400/60 select-none"
+          animate={{ rotate: 360 }}
+          transition={{
+            duration: orb.speed,
+            ease: "linear",
+            repeat: Infinity,
+            delay: orb.delay
+          }}
+          style={{
+            left: "50%",
+            top: "50%",
+            transformOrigin: `${orb.radius * 5.5}px center`
+          }}
+        >
+          <motion.span
+            animate={{
+              y: [0, 5, 0],
+              opacity: [0.5, 1, 0.5]
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          >
+            {orb.icon}
+          </motion.span>
+        </motion.div>
+      ))}
+    </motion.div>
+  </div>
+            <motion.p
+              className="mt-4 text-lg md:text-xl text-purple-400 font-light tracking-wide"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 2.5, duration: 0.6 }}
+          >
+              Senior Software Engineer for C++ • Blockchain • AI Systems • Java • Linux • React 
+                </motion.p>
           </motion.div>
 
           <motion.div

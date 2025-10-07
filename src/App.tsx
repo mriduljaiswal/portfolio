@@ -6,6 +6,7 @@ import About from './components/About'
 import WorkHistory from './components/WorkHistory'
 import Skills from './components/Skills'
 import Contact from './components/Contact'
+import VeriCert from './components/VeriCert';
 
 const App = memo(function App() {
   const [showContent, setShowContent] = useState(false)
@@ -73,6 +74,7 @@ const App = memo(function App() {
             <About />
             <WorkHistory />
             <Skills />
+            <VeriCert />
             <Contact />
           </motion.div>
         </main>
